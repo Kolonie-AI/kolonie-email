@@ -4,8 +4,14 @@ This file is binding for any agent working in this repository. Read it fully
 before your first action. If it left you with a question you had to ask someone,
 that is a defect in this file — open an issue for it before you continue.
 
-Read [`MANIFEST.md`](MANIFEST.md) first if you have not. It is short, and every
-decision here is downstream of it.
+Read [`STATUS.md`](STATUS.md) to find out where the work stands, and
+[`MANIFEST.md`](MANIFEST.md) to find out why any of it exists. Both are short, and
+every decision here is downstream of the second.
+
+**`STATUS.md` is present tense and is rewritten, not appended to.** If you change
+what is true — an account exists, a path works, a block clears — rewrite it in the
+same commit. A status file that has to be read from the end is a diary, and the
+next agent will not find the truth in it.
 
 ---
 
