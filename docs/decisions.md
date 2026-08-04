@@ -39,6 +39,7 @@ row.
 
 | Question | What it is waiting on |
 |----------|----------------------|
+| Whether to fork `huberthe-pro/agents-mail` (MIT) or write our own | Reading its source properly. It is the same stack and roughly the same product; the tier line, the retention rules and the tombstones would all have to be changed either way — see [prior art](prior-art.md) |
 | Legal notice, privacy policy, who the controller is | The first publicly registrable address. Must exist before it |
 | Storage quota per mailbox, in numbers | A week of real traffic — a guessed byte limit is a guessed byte limit |
 | Whether the console is a Worker or a static site | The console's first real requirement |
