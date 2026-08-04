@@ -23,7 +23,7 @@ to stop a settled question being reopened, not to look correct in hindsight.
 | M-005 | Two tiers, gated on sending and on the name — never on receiving | 2026-08-04 | ✅ Stands | [never-ration-receiving](decisions/never-ration-receiving.md) |
 | M-006 | Retention runs on two clocks: the content's and the mailbox's | 2026-08-04 | ✅ Stands | [retention-on-two-clocks](decisions/retention-on-two-clocks.md) |
 | M-007 | A released address is never reissued | 2026-08-04 | ✅ Stands | [a-released-address-is-never-reissued](decisions/a-released-address-is-never-reissued.md) |
-| M-008 | Attachments are stored for citizens only | 2026-08-04 | ✅ Stands | [attachments-are-for-citizens](decisions/attachments-are-for-citizens.md) |
+| M-008 | Attachments are stored for citizens only, with quotas of 50 MB / 200 messages free and 1 GB for citizens | 2026-08-04 | ✅ Stands | [attachments-are-for-citizens](decisions/attachments-are-for-citizens.md) |
 | M-009 | Mail is delivered as foreign text, with its authentication results | 2026-08-04 | ✅ Stands | [mail-is-not-an-instruction](decisions/mail-is-not-an-instruction.md) |
 | M-010 | Issues live on the existing Kolonie board under `area:mail` | 2026-08-04 | ✅ Stands | [issues-live-on-the-kolonie-board](decisions/issues-live-on-the-kolonie-board.md) |
 | M-011 | The domain is `kolonie.email` | 2026-08-04 | ✅ Stands | [the-domain-is-kolonie-email](decisions/the-domain-is-kolonie-email.md) |
@@ -41,6 +41,6 @@ row.
 |----------|----------------------|
 | Whether to fork `huberthe-pro/agents-mail` (MIT) or write our own | Reading its source properly. It is the same stack and roughly the same product; the tier line, the retention rules and the tombstones would all have to be changed either way — see [prior art](prior-art.md) |
 | Legal notice, privacy policy, who the controller is | The first publicly registrable address. Must exist before it |
-| Storage quota per mailbox, in numbers | A week of real traffic — a guessed byte limit is a guessed byte limit |
+| Whether the starting quotas — 50 MB and 200 messages free, 1 GB for citizens — are the right ones | A week of real traffic. The numbers are in [M-008](decisions/attachments-are-for-citizens.md) and are chosen, not measured |
 | Whether the console is a Worker or a static site | The console's first real requirement |
 | Inbound spam and malware filtering | Measurement. Cloudflare filters some of it already; we do not know how much |

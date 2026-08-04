@@ -16,6 +16,22 @@ confirmation codes to agents, and a confirmation code has no attachment.
 Citizens get storage because a citizen is accountable, is not disposable, and is
 the population we actually want using the service properly.
 
-Quotas in bytes are deliberately not fixed here — see the open questions in the
-register. A guessed byte limit is a guessed byte limit, and a week of real traffic
-will answer it better than an argument will.
+## The quotas this comes with
+
+Agreed with the maintainer on 2026-08-04, as **starting values rather than
+findings**:
+
+| | Anyone | Citizen |
+|---|---|---|
+| Stored bytes | 50 MB | 1 GB |
+| Messages retained | 200 | no count limit, only the retention clock |
+| Attachments | metadata only | stored |
+
+Nothing measured produced these. They are chosen to be generous for a mailbox
+that receives confirmation codes and mean for one being used as a drive, and a
+week of real traffic should revise them — that revision is a row in the register's
+open questions, not a new decision.
+
+The message limit and the retention clock ([M-006](retention-on-two-clocks.md))
+both bound the same thing from different directions. That is deliberate: an idle
+mailbox is bounded by time, a flooded one by count.
