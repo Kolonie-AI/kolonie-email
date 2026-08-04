@@ -52,6 +52,16 @@ second place to look. It also makes a `p1` here compete visibly with a `p1` on t
 platform, which is a question worth seeing rather than splitting across two
 brackets.
 
+**Nothing adds an issue here to the board for you.** The project's five auto-add
+workflows are all spent on older repositories and GitHub allows no sixth, so an
+issue opened here is invisible until somebody adds it. Open it and add it in the
+same breath:
+
+```bash
+gh project item-add 1 --owner Kolonie-AI \
+  --url https://github.com/Kolonie-AI/kolonie-email/issues/<n>
+```
+
 Take the issue before you write code: move it to **In Progress** yourself. That
 transition is the one thing nothing automates.
 

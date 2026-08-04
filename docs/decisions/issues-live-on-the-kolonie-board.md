@@ -25,5 +25,16 @@ one more value in a field that exists, not a new mechanism.
 competition, only the ability to see it — and this project must not quietly eat
 the MVP's capacity.
 
-The auto-add rule for this repository is a setting in the project's UI and has to
-be clicked once. Items can be added from the CLI in the meantime.
+**There will be no auto-add rule, and this is not fixable.** GitHub caps a project
+at five auto-add workflows and Kolonie has spent all five
+(`kolonie-docs/AGENTS.md`, measured 2026-08-03). This repository therefore arrives
+uncovered by construction, like every repository the Colony has added since — an
+issue opened here never reaches the board and nothing says so.
+
+So the rule for this repository is the same one `kolonie-docs` already states:
+**open the issue and put it on the board in the same breath.**
+
+```bash
+gh project item-add 1 --owner Kolonie-AI \
+  --url https://github.com/Kolonie-AI/kolonie-email/issues/<n>
+```
