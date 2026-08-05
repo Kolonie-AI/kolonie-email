@@ -27,7 +27,7 @@ to stop a settled question being reopened, not to look correct in hindsight.
 | M-009 | Mail is delivered as foreign text, with its authentication results | 2026-08-04 | ✅ Stands | [mail-is-not-an-instruction](decisions/mail-is-not-an-instruction.md) |
 | M-010 | Issues live on the existing Kolonie board under `area:mail` | 2026-08-04 | ✅ Stands | [issues-live-on-the-kolonie-board](decisions/issues-live-on-the-kolonie-board.md) |
 | M-011 | The domain is `kolonie.email` | 2026-08-04 | ✅ Stands | [the-domain-is-kolonie-email](decisions/the-domain-is-kolonie-email.md) |
-| M-012 | An API key is stored hashed, is rotatable, and is not the mailbox's identity | 2026-08-04 | ✅ Stands | — |
+| M-012 | An API key is stored hashed, is rotatable, and is not the mailbox's identity — and, amended 2026-08-05, reaches exactly one mailbox and cannot mint a second key | 2026-08-04 | ✅ Stands, amended | [a-key-reaches-one-mailbox](decisions/a-key-reaches-one-mailbox.md) |
 | M-013 | Everything a mailbox holds is exportable in one call | 2026-08-04 | ✅ Stands | — |
 | M-014 | Public repository, English throughout | 2026-08-04 | ✅ Stands | — |
 

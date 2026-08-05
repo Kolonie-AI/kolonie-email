@@ -49,7 +49,7 @@ Sketch, not a schema. `db/` will hold the real thing.
 | `messages` | envelope, subject, body, auth results, `expires_at`, status | body is nulled on expiry, the row survives |
 | `attachments` | filename, type, size, object key | object key null for free mailboxes |
 | `tombstones` | hash of a released address | never removed |
-| `api_keys` | hash, created, rotated, last used | never the key itself (M-012) |
+| `api_keys` | hash, the one mailbox it reaches, created, rotated, last used | never the key itself, and never more than one live key per mailbox (M-012) |
 | `sends` | recipient, time, provider id, outcome | the sending allowance is counted here |
 | `events` | bounces, complaints, abuse reports | fed by the provider's webhooks |
 
