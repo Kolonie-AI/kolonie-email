@@ -1,14 +1,18 @@
 # Prior art
 
-Three services sell what we are about to give away, and one of them published its
+Four services sell what we are about to give away, and one of them published its
 source and its strategy. Read this before proposing anything; most obvious ideas
 have already been tried by somebody in this table, and two of them were tried and
 rejected for reasons worth knowing.
 
-Everything below was measured on **2026-08-04** from public documentation and
-source. Providers change their terms; re-measure before quoting any of it.
+**The first three were measured on 2026-08-04**, and **OpenMail on 2026-08-05**,
+from public documentation and source. Providers change their terms; re-measure
+before quoting any of it. That warning is not decoration here: OpenMail's free
+tier as described in `kolonie-email#2` on 2026-08-05 — *"100 sends a day, 3 GB"* —
+is not on the pricing page the same day, and its Pro tier turned out to be €9/mo
+**plus usage** rather than €9/mo.
 
-## The three
+## The four
 
 ### agentsmail.org — the one we learned the most from
 
@@ -33,6 +37,46 @@ Their trust tiers are worth reading in full (`migrations/011_trust_tiers.sql`):
 0 anonymous and receive-only, 1 verified by owner **or three mutual contacts**,
 2 established by activity, 3 reserved for paid. The mutual-contacts route to
 trust is a genuinely clever idea we have no equivalent of.
+
+### openmail.sh — the only one we have run
+
+**The one entry written from measurement rather than from marketing copy.** On
+2026-08-05 a Colony agent opened an account and a mailbox unattended,
+`hazeaero6071@openmail.sh`, and proved a round trip in both directions inside one
+minute. Everything below was then checked against the published documentation the
+same day; where the two disagree, both readings are given.
+
+An email API for AI agents, EU-hosted and making that a selling point rather than a
+footnote — *"OpenMail is built in the EU, runs in the EU, and every customer is
+covered by GDPR."* Free tier: **3 inboxes, 3,000 emails a month, no card**. Pro
+**€9/month plus usage** — 10 inboxes then €1 each, 10,000 emails then €0.001 each —
+and a custom enterprise tier. REST at `api.openmail.sh` with bearer keys, WebSocket,
+webhooks, a published CLI (`@openmail/cli`), and a ClawHub skill. 53 documented
+pages.
+
+| | What they do | What we do about it |
+|---|---|---|
+| 1 | **`llms.txt`**, and two of them: 11,362 bytes at `docs.openmail.sh/llms.txt`, 5,604 at the apex domain. One line per documentation page, each with a sentence of what is on it | **Take, and cheaply.** One generated file. It is atomicmail's JMAP argument — *reduce what the agent must read before it can act* — without the facade. The apex copy is the better idea of the two: it answers *what is this service* before an agent has found the docs at all |
+| 2 | **Inbox-scoped and pod-scoped API keys.** An inbox key *"can only read and send from this one inbox — its threads, messages, and drafts — and can never reach another inbox, manage pods, or mint keys"*. A pod key *"can never delete an inbox, change an inbox's webhook config, manage pods, mint keys, or reach another pod's data"*. The token is returned once | **Take**, as an amendment to [M-012](decisions.md), which makes a key hashed and rotatable and says nothing about scope. Scope is what bounds the blast radius when an agent leaks its own key, which is the likeliest incident this service will ever have. Note what they scoped *away* as well as toward: neither key can mint another |
+| 3 | **`Idempotency-Key` on send**, rejecting duplicates for 24 hours | **Take, at the first endpoint.** An agent that crashes between sending and recording the send is the normal case here, not the edge case, and this is expensive to retrofit once senders exist. See the disagreement below before copying their spec |
+| 4 | **Sender rules** — allow and block lists that *"filter inbound messages before they trigger webhooks"* | **Take, later.** It belongs to the delivery path and there is no delivery path yet. Filing it against the webhook design rather than now. Worth knowing it is a *concepts* page and not in their API reference, so a feature list built from the OpenAPI spec alone would have missed it |
+| 5 | **Reputation lifecycle webhook events** — inbox and pod suspension and reactivation, delivered as events | **Take, and it matters more for us than for them.** [M-005](decisions/never-ration-receiving.md) gates sending; a holder whose sending is silently refused cannot tell a refusal from an outage. That is `kolonie-docs#159` one service along, and their answer is the right shape: tell the holder, in the channel it already reads |
+| 6 | **Magic-link signup: an address you already hold** | **Refuse, and the contrast is the entry's point.** This project's first sentence is *"anyone may take an address — no account, no human, no card."* OpenMail structurally cannot be an agent's *first* mailbox. That gap is what `kolonie.email` is for, and it is the one thing in this table none of the four does |
+
+**Their own spec disagrees with their own documentation, and it is the direction that
+matters.** `openapi.json` carries `"name": "idempotency-key", "required": false` on
+the send endpoint; the documentation page for that endpoint says *"Requires
+Idempotency-Key header"*. One of those is wrong and a client generated from the
+machine-readable one is the one that breaks. **Worth copying as a caution rather
+than as a feature**: whatever we publish for agents to read, the generated artefact
+and the prose have to be generated from the same source, or we will ship this.
+
+**One observation rather than an idea: the local part is assigned, not chosen.**
+`username` was sent and silently ignored. That is the same shape as agentsmail's
+tier-0 random address — **two of four services do it** — so a citizen that plans
+around a predictable address will be wrong at most providers rather than at one.
+Silently ignoring a field is the part to refuse: an agent that asked for a name and
+was given another has no way to learn that it was refused.
 
 ### agentmail.to — the incumbent
 
@@ -63,10 +107,11 @@ Two arguments from them worth keeping:
 Their proof-of-work is the same problem we solve with citizenship: *who answers
 for this sender*. They make the agent burn CPU; we ask an existing register.
 
-## Where we differ from all three
+## Where we differ from all four
 
 Each of them has to manufacture a responsible party — a confirmed owner mailbox, a
-proof-of-work, a behavioural score. **Kolonie already has one.** A citizen has an
+proof-of-work, a behavioural score, a magic link to an address somebody already
+holds. **Kolonie already has one.** A citizen has an
 operator who answers for it and a record of cleared rungs, so *"you may send
 because somebody answers for you"* is not a tier we invented for pricing. It is
 the literal thing every one of these services is approximating.
