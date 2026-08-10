@@ -1,7 +1,7 @@
 # STATUS — what exists right now
 
 Present tense only. **This file is rewritten, never appended to** — if it starts
-reading like a diary, it has failed. Last rewritten 2026-08-04.
+reading like a diary, it has failed. Last rewritten 2026-08-10.
 
 ## In one line
 
@@ -14,6 +14,7 @@ is answered.
 | | |
 |---|---|
 | This repository | Decisions, architecture, prior art, the Kolonie contract. No code |
+| Its check | `bash .github/scripts/check.sh`, named in `AGENTS.md` §9 and run by `ci.yml` on every push and pull request. Four checks over the Markdown; grows with the code ([#4](https://github.com/Kolonie-AI/kolonie-email/issues/4)) |
 | `kolonie.email` | Registered 2026-08-04, paid through 2028-08-04, privacy protection on |
 | `kolonie.sh`, `kolonie.to` | Registered the same day and **not part of this project** — the mail service gets one domain ([M-011](docs/decisions/the-domain-is-kolonie-email.md)) |
 | Labels and board | `area:mail` and the usual set exist here; issues sit on the Kolonie board ([M-010](docs/decisions/issues-live-on-the-kolonie-board.md)) |
@@ -22,9 +23,15 @@ is answered.
 ## What does not exist
 
 No Cloudflare account for this project, no zone in it, no Workers, no D1, no R2,
-no sending account, no DNS records, no code, no tests, no website. The tier model,
-the retention rules and the API shape exist **as decisions only** — nothing
-enforces them.
+no sending account, no DNS records, no code, no website. The tier model, the
+retention rules and the API shape exist **as decisions only** — nothing enforces
+them.
+
+**No required status check on `main`.** The check runs, and nothing makes a pull
+request wait for it, so pull requests here still wait for a person rather than
+auto-merging the way the four older repositories' do (`kolonie-docs`
+`ARCHITECTURE.md`, *Merging*). That is a branch-protection setting and a
+maintainer's to make.
 
 ## What is blocked
 
