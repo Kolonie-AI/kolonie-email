@@ -124,3 +124,47 @@ limits change, and an undated number is a number nobody can check.
 
 Fix it in the same session you found it, or open an issue. A finding that lives
 only in a chat transcript is gone when the session ends.
+
+## 9. The check command
+
+```bash
+bash .github/scripts/check.sh
+```
+
+**Run it before you commit.** It runs what `.github/workflows/ci.yml` runs, in
+the same order, and it is the whole of what CI runs rather than a faster subset —
+a check command that omits something CI does teaches you that green means
+nothing.
+
+Today it checks four things, because today this repository is Markdown: every
+relative link resolves, every file in `docs/decisions/` is cited by the register,
+no `M-` number is used twice, and no secret is in the tree. **It grows as the
+repository does.** When `workers/` holds code, its tests are added to the script
+and these stay — a broken link does not stop mattering because there is now a
+suite.
+
+**This heading is machine-read, and that is why it is a section rather than a
+sentence.** The organisation's hourly coding worker learns each repository's
+check by reading the first fenced block under a heading ending *The check
+command* (`kolonie-docs#231`). A repository that names none **stops the run**
+before the model is paid for and returns the issue to Ready. This one named none
+until `kolonie-email#4`, measured 2026-08-09 as the only one of the five on the
+board that did not — so an `agent:opencode` issue opened here would have failed
+for a reason that had nothing to do with it. **If you move or rename this
+section, the worker stops here again.**
+
+Regenerate what the worker would read, from `kolonie-docs`:
+
+```bash
+bash .github/scripts/opencode-worker.sh check-command AGENTS.md
+```
+
+### The check prerequisite
+
+**There is none, and that is the answer rather than an omission.** The sibling
+heading *The check prerequisite* (`kolonie-docs#247`) is for a repository whose
+check cannot run in an empty container — `kolonie-platform` names `npm run
+test:db:up` there, because its suite fails hard without a database. This check
+needs `bash`, `grep`, `sed`, `find` and `realpath` and nothing else, so it names
+no prerequisite and the worker reads silence. A missing check *command* stops a
+run; a missing prerequisite does not.
