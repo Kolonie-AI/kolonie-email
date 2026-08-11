@@ -2,6 +2,14 @@
 
 [← the register](../decisions.md)
 
+> **One clause of this was reversed on 2026-08-11.** The Cloudflare account is
+> Kolonie's own, and the deployment therefore runs on a Kolonie credential — see
+> [M-015](the-cloudflare-account-is-shared.md), which explains why and says what
+> the reversal accepts. **The sending account and the domain are untouched**, and
+> the argument below is why those two are still worth having. It is kept unedited
+> rather than rewritten: a decision that quietly becomes its own reversal teaches
+> nobody what was traded away.
+
 A freely registrable mail domain will be used for spam. Not *might be* — the
 service hands out addresses to anyone who asks, which is the point, and some of
 those will be taken by something we would rather not host. The design question was

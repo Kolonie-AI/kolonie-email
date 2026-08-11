@@ -92,10 +92,17 @@ provider's API key, not a Cloudflare token, not in a test fixture, not
 base64-encoded, not "temporarily". The repository knows the *names* of secrets;
 the values live in the deployment.
 
-**This service does not use Kolonie's accounts.** Its own Cloudflare account, its
-own sending account, its own domain. If you find yourself reaching for a Kolonie
-credential to make something here work, stop — that is the failure this project is
-shaped to prevent.
+**The Cloudflare account is Kolonie's, and every other account is this
+service's own.** That is one exception, made knowingly by the maintainer on
+2026-08-11 with the account-wide blast radius accepted
+([M-015](docs/decisions/the-cloudflare-account-is-shared.md)) — the zone, Email
+Routing, the Worker, D1 and R2 all live in the Colony's account. **The sending
+account and the domain are separate and stay separate**
+([M-001](docs/decisions/separate-in-every-account.md),
+[M-004](docs/decisions/outbound-through-a-provider.md)): the sending account is
+the one that carries a reputation an abuse report can destroy, and reversing that
+too is a maintainer decision rather than an agent's. If you find yourself reaching
+for a Kolonie credential that is not the Cloudflare one, stop.
 
 **Kolonie may not be made to depend on this service.** The interface runs one way
 (§ [`docs/interface-kolonie.md`](docs/interface-kolonie.md)). A change that has

@@ -22,6 +22,9 @@ treat newer gTLDs and accepted on 2026-08-04. The cheap check, whenever somebody
 wants it, is to try registering with a `kolonie.email` address at two large
 services and see what happens.
 
-Registration itself is a maintainer action: it needs the Cloudflare dashboard and
-a payment method, on this project's own account
-([M-001](separate-in-every-account.md)).
+Registration itself was a maintainer action: it needed the Cloudflare dashboard
+and a payment method. It happened in Kolonie's own Cloudflare account, which
+2026-08-04 expected to be temporary and 2026-08-11 made the arrangement
+([M-015](the-cloudflare-account-is-shared.md)). **The domain is still this
+project's own and not Kolonie's** — the account it is registered through and the
+name it holds are two different facts.

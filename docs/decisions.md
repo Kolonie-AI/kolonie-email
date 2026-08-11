@@ -16,7 +16,7 @@ to stop a settled question being reopened, not to look correct in hindsight.
 
 | # | Decision | Date | Status | Reasoning |
 |---|----------|------|--------|-----------|
-| M-001 | Separate from Kolonie in accounts and deployment, not only in the repository | 2026-08-04 | ✅ Stands | [separate-in-every-account](decisions/separate-in-every-account.md) |
+| M-001 | Separate from Kolonie in accounts and deployment, not only in the repository — ~~its own Cloudflare account~~, superseded 2026-08-11 by M-015; the sending account and the domain stand | 2026-08-04 | ⚠️ Stands, one clause reversed | [separate-in-every-account](decisions/separate-in-every-account.md) |
 | M-002 | One repository for the whole service | 2026-08-04 | ✅ Stands | [one-repository](decisions/one-repository.md) |
 | M-003 | No mail server of our own: Cloudflare Email Routing, Workers, D1, R2 | 2026-08-04 | ✅ Stands | [no-mail-server-of-our-own](decisions/no-mail-server-of-our-own.md) |
 | M-004 | Outbound mail goes through a sending provider, not out of the Worker | 2026-08-04 | ✅ Stands | [outbound-through-a-provider](decisions/outbound-through-a-provider.md) |
@@ -30,6 +30,7 @@ to stop a settled question being reopened, not to look correct in hindsight.
 | M-012 | An API key is stored hashed, is rotatable, and is not the mailbox's identity — and, amended 2026-08-05, reaches exactly one mailbox and cannot mint a second key | 2026-08-04 | ✅ Stands, amended | [a-key-reaches-one-mailbox](decisions/a-key-reaches-one-mailbox.md) |
 | M-013 | Everything a mailbox holds is exportable in one call | 2026-08-04 | ✅ Stands | — |
 | M-014 | Public repository, English throughout | 2026-08-04 | ✅ Stands | — |
+| M-015 | The Cloudflare account is Kolonie's own, and the account-wide blast radius is accepted — reverses that one clause of M-001 | 2026-08-11 | ✅ Stands | [the-cloudflare-account-is-shared](decisions/the-cloudflare-account-is-shared.md) |
 
 ## Open, and deliberately not decided yet
 
